@@ -87,10 +87,6 @@ public class PracticaGIT {
     }
 
     public static int menu() {
-        tipcuenta = new TipoCuenta[500];
-        cont_tipc=0;    
-        tipope = new TipoOperacion[500];
-        cont_tipope=0;    
         int opcion = 0;
         System.out.println("***********MENU PRINCIPAL************");
         System.out.println("1.- Nuevo Tipo de Cuenta.");
@@ -125,6 +121,10 @@ public class PracticaGIT {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        tipcuenta = new TipoCuenta[500];
+        cont_tipc=0;    
+        tipope = new TipoOperacion[500];
+        cont_tipope=0;
         int opcion = -1;
         do {
             opcion = menu();
