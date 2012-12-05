@@ -11,13 +11,11 @@ import utilidad.*;
  *
  * @author Weps
  */
-public class PracticaGIT {
-    TipoCuenta[] tipcuenta = new TipoCuenta[500];
-    int cont_tipc=0;
-    
-    TipoOperacion[] tipope = new TipoOperacion[500];
-    int cont_tipope=0;
-    
+public class PracticaGIT {    
+    static TipoCuenta[] tipcuenta;
+    static int cont_tipc;    
+    static TipoOperacion[] tipope;
+    static int cont_tipope;    
     public static void insertarTipoCuenta() {
         tipcuenta[cont_tipc].addTipoCuenta();
         cont_tipc++;
@@ -89,6 +87,10 @@ public class PracticaGIT {
     }
 
     public static int menu() {
+        tipcuenta = new TipoCuenta[500];
+        cont_tipc=0;    
+        tipope = new TipoOperacion[500];
+        cont_tipope=0;    
         int opcion = 0;
         System.out.println("***********MENU PRINCIPAL************");
         System.out.println("1.- Nuevo Tipo de Cuenta.");
