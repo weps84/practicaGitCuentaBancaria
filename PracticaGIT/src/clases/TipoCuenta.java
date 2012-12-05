@@ -14,7 +14,10 @@ public class TipoCuenta {
 
     private String descripcion;
     private long idTipoCuenta;
-
+    public TipoCuenta(){
+       descripcion="";
+       idTipoCuenta=-1;
+   }
     public void addTipoCuenta(long id) {
         idTipoCuenta = id;
         System.out.println("INGRESE LA DESCRIPCIÓN DEL TIPO DE CUENTA: ");

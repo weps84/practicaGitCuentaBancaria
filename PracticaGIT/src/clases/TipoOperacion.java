@@ -14,6 +14,10 @@ public class TipoOperacion {
 
     private String descripcion;
     private long idTipoOperacion;
+    public TipoOperacion(){
+       descripcion="";
+       idTipoOperacion=-1;
+   }
 
     public void addTipoOperacion(long id) {
         idTipoOperacion = id;

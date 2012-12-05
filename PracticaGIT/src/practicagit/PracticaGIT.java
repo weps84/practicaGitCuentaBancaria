@@ -17,17 +17,21 @@ public class PracticaGIT {
     static TipoOperacion[] tipope;
     static int cont_tipope;    
     public static void insertarTipoCuenta() {
+        long idTipCuen;
+        int band=0;
         if(cont_tipc<500){
-          long idTipCuen;
-          int band=0;
           System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA: ");
           idTipCuen = Utilidad.leer_Long();
+          //System.out.println(" ID: "+idTipCuen);
           for(int i=0; i<cont_tipc && band==0; i++){
+              //System.out.println(" entre ");
             if(tipcuenta[i].getId()==idTipCuen){
               band=1;
             }
           }
           if(band==0){
+              //System.out.println(" entre "+cont_tipc);
+            tipcuenta[cont_tipc]=new TipoCuenta();
             tipcuenta[cont_tipc].addTipoCuenta(idTipCuen);
             cont_tipc++;
           }
@@ -41,9 +45,9 @@ public class PracticaGIT {
     }
 
     public static void insertarTipoOperaciones() {
-        if(cont_tipope<500){
           long idTipOpe;
           int band=0;
+        if(cont_tipope<500){
           System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN: ");
           idTipOpe = Utilidad.leer_Long();
           for(int i=0; i<cont_tipope && band==0; i++){
@@ -52,6 +56,7 @@ public class PracticaGIT {
             }
           }
           if(band==0){
+            tipope[cont_tipope]=new TipoOperacion();
             tipope[cont_tipope].addTipoOperacion(idTipOpe);
             cont_tipope++;
           }
@@ -86,20 +91,20 @@ public class PracticaGIT {
     }
 
     public static void reporte_5() {
-        System.out.println("LISTADO DE TIPOS DE CUENTAS");
-        System.out.println("N°      ID                    DESCRIPCIÓN");
-        for(int i=0;i<cont_tipc;i++){
-           int num=i+1;
-           System.out.println(""+num+" "+tipcuenta[i].getId()+" "+tipcuenta[i].getDescripcion());
-        }
-    }
-
-    public static void reporte_6() {
         System.out.println("LISTADO DE TIPOS DE OPERACIONES");
         System.out.println("N° \tID \tDESCRIPCIÓN");
         for(int i=0;i<cont_tipope;i++){
            int num=i+1;
            System.out.println(""+num+" \t"+tipope[i].getId()+" \t"+tipope[i].getDescripcion());
+        }
+    }
+
+    public static void reporte_6() {
+        System.out.println("LISTADO DE TIPOS DE CUENTAS");
+        System.out.println("N° \tID \tDESCRIPCIÓN");
+        for(int i=0;i<cont_tipc;i++){
+           int num=i+1;
+           System.out.println(""+num+" \t"+tipcuenta[i].getId()+" \t"+tipcuenta[i].getDescripcion());
         }
     }
 
