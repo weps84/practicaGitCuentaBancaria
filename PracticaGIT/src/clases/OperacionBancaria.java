@@ -16,6 +16,7 @@ public class OperacionBancaria {
     private Date fechaOperacion;
     private long idOperacion;
     private TipoOperacion tipoOperacion;
+    private double montoOperacion;
 
     public void createOperacionBancaria() {
     }

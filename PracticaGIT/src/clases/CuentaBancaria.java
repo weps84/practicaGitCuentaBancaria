@@ -17,6 +17,7 @@ public class CuentaBancaria {
     private String numeroCuenta;
     private TipoCuenta tipoCuenta;
     private OperacionBancaria [] operaciones;
+    private double montoCuenta;
 
     public void createCuentaBancaria() {
     }
