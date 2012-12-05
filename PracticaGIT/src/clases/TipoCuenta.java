@@ -15,10 +15,15 @@ public class TipoCuenta {
     private String descripcion;
     private long idTipoCuenta;
 
-    public void addTipoCuenta() {
-        System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA: ");
-        idTipoCuenta = Utilidad.leer_Long();
+    public void addTipoCuenta(long id) {
+        idTipoCuenta = id;
         System.out.println("INGRESE LA DESCRIPCIÓN DEL TIPO DE CUENTA: ");
         descripcion = Utilidad.leer_String();
+    }
+    public long getId(){
+      return idTipoCuenta;
+    }
+    public String getDescripcion(){
+      return descripcion;
     }
 }

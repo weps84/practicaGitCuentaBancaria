@@ -15,10 +15,15 @@ public class TipoOperacion {
     private String descripcion;
     private long idTipoOperacion;
 
-    public void addTipoOperacion() {
-        System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN: ");
-        idTipoOperacion = Utilidad.leer_Long();
+    public void addTipoOperacion(long id) {
+        idTipoOperacion = id;
         System.out.println("INGRESE LA DESCRIPCIÓN DEL TIPO DE OPERACIÓN: ");
         descripcion = Utilidad.leer_String();
+    }
+    public long getId(){
+      return idTipoOperacion;
+    }
+    public String getDescripcion(){
+      return descripcion;
     }
 }

@@ -17,13 +17,51 @@ public class PracticaGIT {
     static TipoOperacion[] tipope;
     static int cont_tipope;    
     public static void insertarTipoCuenta() {
-        tipcuenta[cont_tipc].addTipoCuenta();
-        cont_tipc++;
+        if(cont_tipc<500){
+          long idTipCuen;
+          int band=0;
+          System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA: ");
+          idTipCuen = Utilidad.leer_Long();
+          for(int i=0; i<cont_tipc && band==0; i++){
+            if(tipcuenta[i].getId()==idTipCuen){
+              band=1;
+            }
+          }
+          if(band==0){
+            tipcuenta[cont_tipc].addTipoCuenta(idTipCuen);
+            cont_tipc++;
+          }
+          else{
+            System.out.println("LO SIENTO DEBE DE RECTIFICAR EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA YA QUE EL INGRESADO SE ENCUENTRA REGISTRADO ANTERIORMENTE");
+          }
+        }
+        else{
+          System.out.println("LO SIENTO HA SOBREPASADO EL LÍMITE DE 500 TIPOS DE CUENTA, POR LO QUE NO SE PUEDE CREAR UNA NUEVA");
+        }
     }
 
     public static void insertarTipoOperaciones() {
-        tipope[cont_tipope].addTipoOperacion();
-        cont_tipope++;
+        if(cont_tipope<500){
+          long idTipOpe;
+          int band=0;
+          System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN: ");
+          idTipOpe = Utilidad.leer_Long();
+          for(int i=0; i<cont_tipope && band==0; i++){
+            if(tipope[i].getId()==idTipOpe){
+              band=1;
+            }
+          }
+          if(band==0){
+            tipope[cont_tipope].addTipoOperacion(idTipOpe);
+            cont_tipope++;
+          }
+          else{
+            System.out.println("LO SIENTO DEBE DE RECTIFICAR EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN YA QUE EL INGRESADO SE ENCUENTRA REGISTRADO ANTERIORMENTE");
+          }
+        }
+        else{
+          System.out.println("LO SIENTO HA SOBREPASADO EL LÍMITE DE 500 TIPOS DE OPERACIÓN, POR LO QUE NO SE PUEDE CREAR UNO NUEVO");
+        }
     }
 
     public static void insertarCliente() {
@@ -48,9 +86,21 @@ public class PracticaGIT {
     }
 
     public static void reporte_5() {
+        System.out.println("LISTADO DE TIPOS DE CUENTAS");
+        System.out.println("N°      ID                    DESCRIPCIÓN");
+        for(int i=0;i<cont_tipc;i++){
+           int num=i+1;
+           System.out.println(""+num+" "+tipcuenta[i].getId()+" "+tipcuenta[i].getDescripcion());
+        }
     }
 
     public static void reporte_6() {
+        System.out.println("LISTADO DE TIPOS DE OPERACIONES");
+        System.out.println("N° \tID \tDESCRIPCIÓN");
+        for(int i=0;i<cont_tipope;i++){
+           int num=i+1;
+           System.out.println(""+num+" \t"+tipope[i].getId()+" \t"+tipope[i].getDescripcion());
+        }
     }
 
     public static void reportes() {
