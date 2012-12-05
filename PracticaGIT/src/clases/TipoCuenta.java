@@ -4,6 +4,8 @@
  */
 package clases;
 
+import utilidad.Utilidad;
+
 /**
  *
  * @author Weps
@@ -14,5 +16,9 @@ public class TipoCuenta {
     private long idTipoCuenta;
 
     public void addTipoCuenta() {
+        System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA: ");
+        idTipoCuenta = Utilidad.leer_Long();
+        System.out.println("INGRESE LA DESCRIPCIÓN DEL TIPO DE CUENTA: ");
+        descripcion = Utilidad.leer_String();
     }
 }

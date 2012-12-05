@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 package practicagit;
-
+import clases.TipoCuenta;
+import clases.TipoOperacion;
 import utilidad.*;
 
 /**
@@ -11,11 +12,20 @@ import utilidad.*;
  * @author Weps
  */
 public class PracticaGIT {
-
+    TipoCuenta[] tipcuenta = new TipoCuenta[500];
+    int cont_tipc=0;
+    
+    TipoOperacion[] tipope = new TipoOperacion[500];
+    int cont_tipope=0;
+    
     public static void insertarTipoCuenta() {
+        tipcuenta[cont_tipc].addTipoCuenta();
+        cont_tipc++;
     }
 
     public static void insertarTipoOperaciones() {
+        tipope[cont_tipope].addTipoOperacion();
+        cont_tipope++;
     }
 
     public static void insertarCliente() {
