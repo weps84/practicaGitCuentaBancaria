@@ -70,6 +70,39 @@ public class PracticaGIT {
     }
 
     public static void insertarCliente() {
+        System.out.println("--- MODULO PARA REGISTRAR CLIENTES ---");
+        System.out.println("Introduzca el numero de cedula: ");
+        String cedula = Utilidad.leer_String();
+        swEncontrado=0;
+        //VALIDAR SI LA CEDULA EXISTE
+        for(int i=0;i<ArregloDatos.length;i++){
+            if (ArregloDatos[i]!=null){
+                verDatosArreglo = ArregloDatos[i].split(";");
+                if (cedula.equals(verDatosArreglo[0])){
+                    swEncontrado=1;
+                    break;
+                }
+            }
+        }
+        if (swEncontrado==1){
+            System.out.println("La cedula que esta intentando ingresar ya existe en nuestra base de datos");
+        }else{
+            System.out.println("Introduzca los apellidos: ");
+            String apellidos = Utilidad.leer_String();
+            System.out.println("Introduzca los nombres: ");
+            String nombres = Utilidad.leer_String();
+            System.out.println("Introduzca la edad: ");
+            int edad = Utilidad.leer_Int();            
+            System.out.println("Introduzca el numero de telefono: ");
+            String telefono = Utilidad.leer_String();
+            System.out.println("Introduzca la direccion: ");
+            String direccion = Utilidad.leer_String();
+            //EL ARREGLO ES LIMITADO A 500 POSICIONES
+            ArregloDatos[contadorDatoColumna]= cedula+";"+apellidos+";"+nombres+";"+edad+";"+telefono+";"+direccion;
+            contadorDatoColumna++;
+            System.out.println("/// DATOS INGRESADOS CON EXITO ///");
+        }
+
     }
 
     public static void insertarCuentaBancaria() {
@@ -85,6 +118,19 @@ public class PracticaGIT {
     }
 
     public static void reporte_3() {
+        System.out.println("Cedula\tApellidos\tNombres\tEdad\tTelefono\tDireccion");
+        String reemplazar;
+        for(int i=0;i<ArregloDatos.length;i++){            
+            if (ArregloDatos[i]!=null){
+                reemplazar = ArregloDatos[i].replace(";","\t");
+                //for(int j=0;j<3;j++){
+                System.out.println(reemplazar); 
+                //}
+            }else{
+                break;
+            }
+        }    
+    
     }
 
     public static void reporte_4() {
