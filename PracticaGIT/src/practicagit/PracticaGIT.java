@@ -15,7 +15,12 @@ public class PracticaGIT {
     static TipoCuenta[] tipcuenta;
     static int cont_tipc;    
     static TipoOperacion[] tipope;
-    static int cont_tipope;    
+    static int cont_tipope; 
+    private static int contadorDatoColumna=0;    
+    private static String[ ]  ArregloDatos=new String[500];
+    private static int swEncontrado=0;    
+    private static String[] verDatosArreglo;
+    
     public static void insertarTipoCuenta() {
         long idTipCuen;
         int band=0;
