@@ -5,6 +5,7 @@
 package practicagit;
 import clases.TipoCuenta;
 import clases.TipoOperacion;
+import clases.Cliente;
 import utilidad.*;
 
 /**
@@ -16,10 +17,13 @@ public class PracticaGIT {
     static int cont_tipc;    
     static TipoOperacion[] tipope;
     static int cont_tipope; 
-    private static int contadorDatoColumna=0;    
-    private static String[ ]  ArregloDatos=new String[500];
-    private static int swEncontrado=0;    
-    private static String[] verDatosArreglo;
+    // COMPAÑEROS LO LIMITE A 500 (static Cliente[] ClienteNuevo=new Cliente[500]) YA QUE 
+    // AL DEJARLO DE ESTA FORMA static Cliente[] ClienteNuevo ME DABA  UN ERROR DE PUNTERO 
+    // NULO AL COMPARAR EL OBJETO EN EL FOR
+    static Cliente[] ClienteNuevo=new Cliente[500];
+    static int contadorCliente=0;    
+    static int swEncontrado=0;    
+    static long idClienteIncrementado=0;
     
     public static void insertarTipoCuenta() {
         long idTipCuen;
@@ -53,6 +57,8 @@ public class PracticaGIT {
           long idTipOpe;
           int band=0;
         if(cont_tipope<500){
+          // ¿¿¿ NUVIA EL IDENTIFICADOR UNICO NO DEBERIA INCREMENTARSE AUTOMATICAMENTE SIN NECESIDAD DE PEDIRLO???
+          // YO LO INCREMENTO AUTOMATICAMENTE EN EL CLIENTE O CORRIJANME SI ME EQUIVOCO////
           System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN: ");
           idTipOpe = Utilidad.leer_Long();
           for(int i=0; i<cont_tipope && band==0; i++){
@@ -75,15 +81,15 @@ public class PracticaGIT {
     }
 
     public static void insertarCliente() {
-        System.out.println("--- MODULO PARA REGISTRAR CLIENTES ---");
-        System.out.println("Introduzca el numero de cedula: ");
+           System.out.println("--- MODULO PARA REGISTRAR CLIENTES ---");
+        System.out.println("INGRESE EL NUMERO DE CEDULA DEL CLIENTE: ");
         String cedula = Utilidad.leer_String();
         swEncontrado=0;
         //VALIDAR SI LA CEDULA EXISTE
-        for(int i=0;i<ArregloDatos.length;i++){
-            if (ArregloDatos[i]!=null){
-                verDatosArreglo = ArregloDatos[i].split(";");
-                if (cedula.equals(verDatosArreglo[0])){
+        for(int i=0;i<ClienteNuevo.length;i++){
+            //if (ArregloDatos[i]!=null){
+            if (ClienteNuevo[i]!=null){
+                if (ClienteNuevo[i].getCedulaCliente().equals(cedula)){
                     swEncontrado=1;
                     break;
                 }
@@ -92,20 +98,12 @@ public class PracticaGIT {
         if (swEncontrado==1){
             System.out.println("La cedula que esta intentando ingresar ya existe en nuestra base de datos");
         }else{
-            System.out.println("Introduzca los apellidos: ");
-            String apellidos = Utilidad.leer_String();
-            System.out.println("Introduzca los nombres: ");
-            String nombres = Utilidad.leer_String();
-            System.out.println("Introduzca la edad: ");
-            int edad = Utilidad.leer_Int();            
-            System.out.println("Introduzca el numero de telefono: ");
-            String telefono = Utilidad.leer_String();
-            System.out.println("Introduzca la direccion: ");
-            String direccion = Utilidad.leer_String();
-            //EL ARREGLO ES LIMITADO A 500 POSICIONES
-            ArregloDatos[contadorDatoColumna]= cedula+";"+apellidos+";"+nombres+";"+edad+";"+telefono+";"+direccion;
-            contadorDatoColumna++;
+            idClienteIncrementado++;
+            ClienteNuevo[contadorCliente]=new Cliente();
+            ClienteNuevo[contadorCliente].createCliente(cedula,idClienteIncrementado);
+            contadorCliente++;
             System.out.println("/// DATOS INGRESADOS CON EXITO ///");
+            
         }
 
     }
@@ -123,19 +121,16 @@ public class PracticaGIT {
     }
 
     public static void reporte_3() {
-        System.out.println("Cedula\tApellidos\tNombres\tEdad\tTelefono\tDireccion");
-        String reemplazar;
-        for(int i=0;i<ArregloDatos.length;i++){            
-            if (ArregloDatos[i]!=null){
-                reemplazar = ArregloDatos[i].replace(";","\t");
-                //for(int j=0;j<3;j++){
-                System.out.println(reemplazar); 
-                //}
+        System.out.println("LISTADO DE USUARIOS");
+        System.out.println("ID \tCedula \t\tNombres Apellidos");
+        for(int i=0;i<ClienteNuevo.length;i++){            
+            if (ClienteNuevo[i]!=null){
+                //int num=i+1;
+                System.out.println(ClienteNuevo[i].getIdCLiente()+"\t"+ClienteNuevo[i].getCedulaCliente()+"\t"+ClienteNuevo[i].getNombresCLiente());
             }else{
                 break;
             }
-        }    
-    
+        }        
     }
 
     public static void reporte_4() {
