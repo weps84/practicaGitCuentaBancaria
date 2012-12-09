@@ -52,9 +52,21 @@ public class CuentaBancaria {
         return nuevo;
     }
 
-    public void getCuentaBancariaById(long idCuentaBancaria) {
+    public boolean getCuentaBancariaById(long idCuentaBancaria) {
+        return this.idCuentaBancaria == idCuentaBancaria;
     }
 
+    public void mostrarCuenta(){
+        System.out.println(this.idCuentaBancaria+"\t"+this.numeroCuenta+"\t"+this.tipoCuenta.getDescripcion());
+    }
+    public void mostrarTodasLasTransacciones(){
+        System.out.println("*****Listado de Operaciones*********");
+        for (int i = 0; i < contadorOperaciones; i++) {
+            System.out.println("1.---");
+            operaciones[i].mostrarTransaccion();
+        }
+        System.out.println("Total disponible en la Cuenta: "+this.montoCuenta);
+    }
     public Date getFecha() {
         return fecha;
     }

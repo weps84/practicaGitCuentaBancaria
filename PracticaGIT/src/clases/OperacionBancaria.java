@@ -25,6 +25,14 @@ public class OperacionBancaria {
     public void getListOperacionesByDate(Date inicio, Date fin) {
     }
 
+    public void mostrarTransaccion(){
+        System.out.println("IdOperacion: "+this.idOperacion);
+        System.out.println("Fecha: "+this.fechaOperacion.toString());
+        System.out.println("Tipo de Operacion: "+this.tipoOperacion.getDescripcion());
+        System.out.println("Monto de la Operacion: "+this.montoOperacion);
+        System.out.println("Monto de la Cuenta al momento: "+this.montoActual);
+        System.out.println("Estado de la Operacion: "+this.estado);
+    }
     public double createOperacionBancaria(long idOperacion, TipoOperacion tipo, double montoActual) {
         System.out.println("Clave de la Operacion: ");
         this.claveOperacion = Utilidad.leer_String();

@@ -42,7 +42,23 @@ public class Cliente {
         }
         return nuevo;
     }
-    
+    public boolean consultarCuentaPorId(long id){
+        for (int i=0; i<contadorCuentas; i++){
+            if (cuentas[i].getCuentaBancariaById(id)){
+                System.out.println("Datos del Cliente: ");
+                System.out.println("Cedula: "+this.cedulaCliente);
+                System.out.println("Nombre: "+this.nombresCliente);
+                cuentas[i].mostrarTodasLasTransacciones();
+                return true;
+            }
+        }
+        return false;
+    }
+    public void mostrarCuentas(){
+        for (int i = 0; i < contadorCuentas; i++) {
+            cuentas[i].mostrarCuenta();
+        }
+    }
     public long getIdCLiente() {
         return idCliente;
     }
