@@ -4,6 +4,7 @@
  */
 package clases;
 
+import utilidad.Utilidad;
 /**
  *
  * @author Weps
@@ -23,9 +24,8 @@ public class Cliente {
         idCliente=idClienteIncrementado;
         cedulaCliente=CedulaIngresada;
         System.out.println("INGRESE NOMBRES Y APELLIDOS DEL CLIENTE");
-        nombresCliente=Utilidad.leer_String();
-    } 
-    
+        nombresCliente= Utilidad.leer_String();
+    }    
     public long getIdCLiente(){
         return idCliente;
     }
