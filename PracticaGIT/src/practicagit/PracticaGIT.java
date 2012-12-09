@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 package practicagit;
+import clases.Cliente;
 import clases.TipoCuenta;
 import clases.TipoOperacion;
-import clases.Cliente;
 import utilidad.*;
 
 /**
@@ -17,62 +17,46 @@ public class PracticaGIT {
     static int cont_tipc;    
     static TipoOperacion[] tipope;
     static int cont_tipope; 
-    // COMPAÑEROS LO LIMITE A 500 (static Cliente[] ClienteNuevo=new Cliente[500]) YA QUE 
-    // AL DEJARLO DE ESTA FORMA static Cliente[] ClienteNuevo ME DABA  UN ERROR DE PUNTERO 
-    // NULO AL COMPARAR EL OBJETO EN EL FOR
     static Cliente[] ClienteNuevo;
     static int contadorCliente;  
+    
     static long idClienteIncrementado;
+    
+    static long idCuentaIncrementado;
+    
     public static Cliente[] ampliarArregloCliente(Cliente arreglo[], int extra){
-		//creo el arreglo con el tamaño original mas el extra a ampliar
 		Cliente nuevo[] = new Cliente[arreglo.length+extra];
-		//ahora copiare los datos del viejo arreglo al nuevo
 		for(int i = 0;i < arreglo.length;i++){
-			//antes de copiar verifico k no sea nulo pa evitar excepciones
-			//si es nulo no necesito copiar, lo dejo asi
 			if(arreglo[i] != null){
 				nuevo[i] = arreglo[i];
 			}
 		}
-		//ahora retorno el arreglo con tamaño extra y con los datos k contenia antes
 		return nuevo;
 	} 
     public static TipoOperacion[] ampliarArregloTipoOperacion(TipoOperacion arreglo[], int extra){
-		//creo el arreglo con el tamaño original mas el extra a ampliar
 		TipoOperacion nuevo[] = new TipoOperacion[arreglo.length+extra];
-		//ahora copiare los datos del viejo arreglo al nuevo
 		for(int i = 0;i < arreglo.length;i++){
-			//antes de copiar verifico k no sea nulo pa evitar excepciones
-			//si es nulo no necesito copiar, lo dejo asi
 			if(arreglo[i] != null){
 				nuevo[i] = arreglo[i];
 			}
 		}
-		//ahora retorno el arreglo con tamaño extra y con los datos k contenia antes
 		return nuevo;
 	}  
     
     public static TipoCuenta[] ampliarArregloTipoCuenta(TipoCuenta arreglo[], int extra){
-		//creo el arreglo con el tamaño original mas el extra a ampliar
 		TipoCuenta nuevo[] = new TipoCuenta[arreglo.length+extra];
-		//ahora copiare los datos del viejo arreglo al nuevo
 		for(int i = 0;i < arreglo.length;i++){
-			//antes de copiar verifico k no sea nulo pa evitar excepciones
-			//si es nulo no necesito copiar, lo dejo asi
 			if(arreglo[i] != null){
 				nuevo[i] = arreglo[i];
 			}
 		}
-		//ahora retorno el arreglo con tamaño extra y con los datos k contenia antes
 		return nuevo;
 	}
     public static void insertarTipoCuenta() {
         long idTipCuen;
         int band=0;
-        //System.out.println("cont_tipc: "+cont_tipc+" TAMAÑO DEL ARREGLO: "+tipcuenta.length);
           System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA: ");
           idTipCuen = Utilidad.leer_Long();
-          //System.out.println(" ID: "+idTipCuen);
           for(int i=0; i<cont_tipc && band==0; i++){
               //System.out.println(" entre ");
             if(tipcuenta[i].getId()==idTipCuen){
@@ -92,18 +76,11 @@ public class PracticaGIT {
           else{
             System.out.println("LO SIENTO DEBE DE RECTIFICAR EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA YA QUE EL INGRESADO SE ENCUENTRA REGISTRADO ANTERIORMENTE");
           }
-        /*}
-        else{
-          System.out.println("LO SIENTO HA SOBREPASADO EL LÍMITE DE 500 TIPOS DE CUENTA, POR LO QUE NO SE PUEDE CREAR UNA NUEVA");
-        }*/
     }
 
     public static void insertarTipoOperaciones() {
           long idTipOpe;
           int band=0;
-        //if(cont_tipope<500){
-          // ¿¿¿ NUVIA EL IDENTIFICADOR UNICO NO DEBERIA INCREMENTARSE AUTOMATICAMENTE SIN NECESIDAD DE PEDIRLO???
-          // YO LO INCREMENTO AUTOMATICAMENTE EN EL CLIENTE O CORRIJANME SI ME EQUIVOCO////
           System.out.println("INGRESE EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN: ");
           idTipOpe = Utilidad.leer_Long();
           for(int i=0; i<cont_tipope && band==0; i++){
@@ -123,10 +100,6 @@ public class PracticaGIT {
           else{
             System.out.println("LO SIENTO DEBE DE RECTIFICAR EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN YA QUE EL INGRESADO SE ENCUENTRA REGISTRADO ANTERIORMENTE");
           }
-        /*
-        else{
-          System.out.println("LO SIENTO HA SOBREPASADO EL LÍMITE DE 500 TIPOS DE OPERACIÓN, POR LO QUE NO SE PUEDE CREAR UNO NUEVO");
-        }*/
     }
 
     public static void insertarCliente() {
@@ -161,6 +134,47 @@ public class PracticaGIT {
     }
 
     public static void insertarCuentaBancaria() {
+        if (contadorCliente==0){
+            System.out.println("No existen clientes registrados....");
+            return;
+        }
+        if (cont_tipc==0){
+            System.out.println("No existen tipos de cuentas registrado.....");
+            return;
+        }
+        System.out.println("/*********NUEVA CUENTA BANCARIA**********/");
+        reporte_3();
+        System.out.println("Cedula del Cliente: ");
+        String cedula = Utilidad.leer_String();
+        boolean enc = false;
+        int pos =-1;
+        for (int i=0; i<contadorCliente && !enc; i++){
+            if (cedula.compareTo(ClienteNuevo[i].getCedulaCliente())==0){
+                enc = true;
+                pos = i;
+            }
+        }
+        if (!enc){
+            System.out.println("Cedula no registrada.........");
+            return;
+        }
+        reporte_6();
+        System.out.println("Id Tipo de Cuenta: ");
+        enc = false;
+        long id = Utilidad.leer_Long();
+        int posTC = -1;
+        for (int i=0; i<cont_tipc && !enc; i++){
+            if (tipcuenta[i].getId()==id){
+                enc = true;
+                posTC=i;
+            }
+        }
+        if (!enc){
+            System.out.println("Este tipo de cuenta no esta registrada....");
+            return;
+        }
+        idCuentaIncrementado++;
+        ClienteNuevo[pos].NuevaCuentaBancaria(tipcuenta[posTC], idCuentaIncrementado);
     }
 
     public static void insertarOperacionBancaria() {
@@ -281,16 +295,7 @@ public class PracticaGIT {
         ClienteNuevo = new Cliente[2];
         contadorCliente=0;
         idClienteIncrementado=0;
-        /*int n;
-        System.out.println("INGRESE LA CANTIDAD DE TIPO DE OPERACIONES QUE TIENE EL BANCO");
-        n= Utilidad.leer_Int();    
-        ampliarArreglo(tipope,n);
-        System.out.println("INGRESE LA CANTIDAD DE TIPO DE CUENTAS QUE TIENE EL BANCO");
-        n= Utilidad.leer_Int();    
-        ampliarArreglo(tipcuenta,n);
-        System.out.println("INGRESE LA CANTIDAD DE CLIENTES QUE TIENE EL BANCO");
-        n= Utilidad.leer_Int();    
-        ampliarArreglo(ClienteNuevo,n);*/
+        idCuentaIncrementado=0;
         int opcion = -1;
         do {
             opcion = menu();

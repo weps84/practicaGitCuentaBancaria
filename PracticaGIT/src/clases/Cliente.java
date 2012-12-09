@@ -14,6 +14,7 @@ public class Cliente {
     private String nombresCliente;
     private String cedulaCliente;
     private CuentaBancaria[] cuentas;
+    private int contadorCuentas;
 
     public Cliente(){
         nombresCliente="";
@@ -25,7 +26,19 @@ public class Cliente {
         cedulaCliente=CedulaIngresada;
         System.out.println("INGRESE NOMBRES Y APELLIDOS DEL CLIENTE");
         nombresCliente= Utilidad.leer_String();
-    }    
+        contadorCuentas=0;
+        cuentas = new CuentaBancaria[2];
+    }  
+    private CuentaBancaria[] ampliarArregloCuenta(CuentaBancaria arreglo[], int extra){
+		CuentaBancaria nuevo[] = new CuentaBancaria[arreglo.length+extra];
+		for(int i = 0;i < arreglo.length;i++){
+			if(arreglo[i] != null){
+				nuevo[i] = arreglo[i];
+			}
+		}
+		return nuevo;
+	} 
+    
     public long getIdCLiente(){
         return idCliente;
     }
@@ -36,5 +49,25 @@ public class Cliente {
     
     public String getNombresCLiente(){
         return nombresCliente;
+    }
+    public void NuevaCuentaBancaria(TipoCuenta tipo, long id){
+        System.out.println("Numero de Cuenta: ");
+        String numeroCuenta = Utilidad.leer_String();
+        boolean enc=false;
+        for (int i = 0; i < contadorCuentas && !enc; i++) {
+            if (numeroCuenta.compareTo(cuentas[i].getNumeroCuenta())==0){
+                enc = true;
+            }
+        }
+        if (enc){
+            System.out.println("Numero de cuenta registrada...");
+            return; 
+        }
+        if (contadorCuentas>=cuentas.length){
+            cuentas = ampliarArregloCuenta(cuentas,10);
+        }
+        cuentas[contadorCuentas] = new CuentaBancaria();
+        cuentas[contadorCuentas].createCuentaBancaria(tipo,id,numeroCuenta);
+        contadorCuentas++;
     }
 }
