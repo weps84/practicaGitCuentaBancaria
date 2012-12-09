@@ -231,6 +231,20 @@ public class PracticaGIT {
     }
 
     public static void reporte_2() {
+        System.out.println("Busqueda de Cuenta por ID");
+        System.out.println("ID\tNumero\tDescripcion");
+        for (int i=0; i<contadorCliente; i++){
+            ClienteNuevo[i].mostrarCuentas();
+        }
+        System.out.println("Id de la Cuenta a Consultar:");
+        int id = Utilidad.leer_Int();
+        boolean enc = false;
+        for (int i=0; i<contadorCliente && !enc; i++){
+            enc = ClienteNuevo[i].consultarCuentaPorId(id);
+        }
+        if(!enc){
+            System.out.println("Id de cuenta no registrado....");
+        }
     }
 
     public static void reporte_3() {
