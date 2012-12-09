@@ -4,7 +4,6 @@
  */
 package clases;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import utilidad.*;
@@ -19,7 +18,7 @@ public class CuentaBancaria {
     private long idCuentaBancaria;
     private String numeroCuenta;
     private TipoCuenta tipoCuenta;
-    private OperacionBancaria [] operaciones;
+    private OperacionBancaria[] operaciones;
     private int contadorOperaciones;
     private double montoCuenta;
 
@@ -40,6 +39,17 @@ public class CuentaBancaria {
         this.contadorOperaciones = 0;
         System.out.println("Monto Inicial de la Cuenta: ");
         this.montoCuenta = Utilidad.leer_Double();
+        operaciones = new OperacionBancaria[2];
+    }
+
+    private OperacionBancaria[] ampliarArregloCuenta(OperacionBancaria arreglo[], int extra) {
+        OperacionBancaria nuevo[] = new OperacionBancaria[arreglo.length + extra];
+        for (int i = 0; i < arreglo.length; i++) {
+            if (arreglo[i] != null) {
+                nuevo[i] = arreglo[i];
+            }
+        }
+        return nuevo;
     }
 
     public void getCuentaBancariaById(long idCuentaBancaria) {
@@ -68,5 +78,13 @@ public class CuentaBancaria {
     public OperacionBancaria[] getOperaciones() {
         return operaciones;
     }
-    
+
+    public void nuevaOperacionBancaria(TipoOperacion tipo, long id) {
+        if (contadorOperaciones >= operaciones.length) {
+            operaciones = ampliarArregloCuenta(operaciones, 10);
+        }
+        operaciones[contadorOperaciones] = new OperacionBancaria();
+        this.montoCuenta = operaciones[contadorOperaciones].createOperacionBancaria(id, tipo, montoCuenta);
+        contadorOperaciones++;
+    }
 }
