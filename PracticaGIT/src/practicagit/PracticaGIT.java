@@ -14,7 +14,7 @@ import utilidad.*;
  * @author Weps
  */
 public class PracticaGIT {
-
+    
     static TipoCuenta[] tipcuenta;
     static int cont_tipc;
     static TipoOperacion[] tipope;
@@ -24,7 +24,7 @@ public class PracticaGIT {
     static long idClienteIncrementado;
     static long idCuentaIncrementado;
     static long idOperacionIncrementado;
-
+    
     public static Cliente[] ampliarArregloCliente(Cliente arreglo[], int extra) {
         Cliente nuevo[] = new Cliente[arreglo.length + extra];
         for (int i = 0; i < arreglo.length; i++) {
@@ -34,7 +34,7 @@ public class PracticaGIT {
         }
         return nuevo;
     }
-
+    
     public static TipoOperacion[] ampliarArregloTipoOperacion(TipoOperacion arreglo[], int extra) {
         TipoOperacion nuevo[] = new TipoOperacion[arreglo.length + extra];
         for (int i = 0; i < arreglo.length; i++) {
@@ -44,7 +44,7 @@ public class PracticaGIT {
         }
         return nuevo;
     }
-
+    
     public static TipoCuenta[] ampliarArregloTipoCuenta(TipoCuenta arreglo[], int extra) {
         TipoCuenta nuevo[] = new TipoCuenta[arreglo.length + extra];
         for (int i = 0; i < arreglo.length; i++) {
@@ -54,7 +54,7 @@ public class PracticaGIT {
         }
         return nuevo;
     }
-
+    
     public static void insertarTipoCuenta() {
         long idTipCuen;
         int band = 0;
@@ -79,7 +79,7 @@ public class PracticaGIT {
             System.out.println("LO SIENTO DEBE DE RECTIFICAR EL IDENTIFICADOR UNICO DEL TIPO DE CUENTA YA QUE EL INGRESADO SE ENCUENTRA REGISTRADO ANTERIORMENTE");
         }
     }
-
+    
     public static void insertarTipoOperaciones() {
         long idTipOpe;
         int band = 0;
@@ -102,7 +102,7 @@ public class PracticaGIT {
             System.out.println("LO SIENTO DEBE DE RECTIFICAR EL IDENTIFICADOR UNICO DEL TIPO DE OPERACIÓN YA QUE EL INGRESADO SE ENCUENTRA REGISTRADO ANTERIORMENTE");
         }
     }
-
+    
     public static void insertarCliente() {
         String cedula;
         System.out.println("--- MODULO PARA REGISTRAR CLIENTES ---");
@@ -131,9 +131,9 @@ public class PracticaGIT {
             contadorCliente++;
             System.out.println("/// DATOS INGRESADOS CON EXITO ///");
         }
-
+        
     }
-
+    
     public static void insertarCuentaBancaria() {
         if (contadorCliente == 0) {
             System.out.println("No existen clientes registrados....");
@@ -177,7 +177,7 @@ public class PracticaGIT {
         idCuentaIncrementado++;
         ClienteNuevo[pos].NuevaCuentaBancaria(tipcuenta[posTC], idCuentaIncrementado);
     }
-
+    
     public static void insertarOperacionBancaria() {
         if (cont_tipope == 0) {
             System.out.println("No hay tipo de operaciones registradas....");
@@ -224,9 +224,9 @@ public class PracticaGIT {
         }
         idOperacionIncrementado++;
         ClienteNuevo[pos].nuevaOperacionBancaria(tipope[posTO], idOperacionIncrementado);
-
+        
     }
-
+    
     public static void reporte_1() {
         System.out.println("Busqueda Por Cedula:");
         String cedulaBuscar = "";
@@ -235,36 +235,36 @@ public class PracticaGIT {
         cedulaBuscar = Utilidad.leer_String();
         boolean sw = false;
         
-        for(int i=0; i<contadorCliente && !sw; i++){
-            if (ClienteNuevo[i].getCedulaCliente().compareTo(cedulaBuscar)==0){
-                sw = false;
+        for (int i = 0; i < contadorCliente && !sw; i++) {
+            if (ClienteNuevo[i].getCedulaCliente().compareTo(cedulaBuscar) == 0) {
+                sw = true;
                 System.out.println("ID\tNUMERO DE CUENTA\tDESCRIPCION\tMONTO DISPONIBLE");
                 ClienteNuevo[i].mostrarCuentas();
-                     
+                
             }
         }
-        if(!sw){
+        if (!sw) {
             System.out.println("CLIENTE NO REGISTRADO!!!!!");
         }
     }
-
+    
     public static void reporte_2() {
         System.out.println("Busqueda de Cuenta por ID");
         System.out.println("ID\tNumero\tDescripcion\tMonto Actual");
-        for (int i=0; i<contadorCliente; i++){
+        for (int i = 0; i < contadorCliente; i++) {
             ClienteNuevo[i].mostrarCuentas();
         }
         System.out.println("Id de la Cuenta a Consultar:");
         int id = Utilidad.leer_Int();
         boolean enc = false;
-        for (int i=0; i<contadorCliente && !enc; i++){
+        for (int i = 0; i < contadorCliente && !enc; i++) {
             enc = ClienteNuevo[i].consultarCuentaPorId(id);
         }
-        if(!enc){
+        if (!enc) {
             System.out.println("Id de cuenta no registrado....");
         }
     }
-
+    
     public static void reporte_3() {
         System.out.println("LISTADO DE USUARIOS");
         System.out.println("ID \tCedula \t\tNombres Apellidos");
@@ -277,10 +277,18 @@ public class PracticaGIT {
             }
         }
     }
-
+    
     public static void reporte_4() {
+        System.out.println("*****LISTADO DE CUENTAS POR TIPO*****");
+        for (int i = 0; i < cont_tipc; i++) {
+            System.out.println((i + 1) + "----Tipo de Cuenta: " + tipcuenta[i].getDescripcion());
+            
+            for (int j = 0; j < contadorCliente; j++) {
+                ClienteNuevo[j].consultarCuenta(tipcuenta[i].getDescripcion());
+            }
+        }
     }
-
+    
     public static void reporte_5() {
         System.out.println("LISTADO DE TIPOS DE OPERACIONES");
         System.out.println("N° \tID \tDESCRIPCIÓN");
@@ -289,7 +297,7 @@ public class PracticaGIT {
             System.out.println("" + num + " \t" + tipope[i].getId() + " \t" + tipope[i].getDescripcion());
         }
     }
-
+    
     public static void reporte_6() {
         System.out.println("LISTADO DE TIPOS DE CUENTAS");
         System.out.println("N° \tID \tDESCRIPCIÓN");
@@ -298,7 +306,7 @@ public class PracticaGIT {
             System.out.println("" + num + " \t" + tipcuenta[i].getId() + " \t" + tipcuenta[i].getDescripcion());
         }
     }
-
+    
     public static void reportes() {
         int opcion = -1;
         do {
@@ -331,7 +339,7 @@ public class PracticaGIT {
             }
         } while (opcion != 7);
     }
-
+    
     public static int menu() {
         int opcion = 0;
         System.out.println("***********MENU PRINCIPAL************");
@@ -346,7 +354,7 @@ public class PracticaGIT {
         opcion = Utilidad.leer_Int();
         return opcion;
     }
-
+    
     public static int menuReportes() {
         int opcion = -1;
         System.out.println("----------MENU REPORTES-------------");

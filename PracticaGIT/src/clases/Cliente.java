@@ -54,6 +54,16 @@ public class Cliente {
         }
         return false;
     }
+    public void consultarCuenta(String tipoDeCuenta){
+        for (int i=0; i<contadorCuentas; i++){
+            if (cuentas[i].getTipoCuenta().getDescripcion().compareTo(tipoDeCuenta)==0){
+                System.out.println("Cliente: "+cedulaCliente);
+                System.out.println("Nombre: "+nombresCliente);
+                System.out.println("ID\tNUMERO DE CUENTA\tDESCRIPCION\tMONTO DISPONIBLE");
+                cuentas[i].mostrarCuenta();
+            }
+        }
+    }
     public void mostrarCuentas(){
         for (int i = 0; i < contadorCuentas; i++) {
             cuentas[i].mostrarCuenta();
