@@ -57,7 +57,7 @@ public class CuentaBancaria {
     }
 
     public void mostrarCuenta(){
-        System.out.println(this.idCuentaBancaria+"\t"+this.numeroCuenta+"\t"+this.tipoCuenta.getDescripcion());
+        System.out.println(this.idCuentaBancaria+"\t"+this.numeroCuenta+"\t"+this.tipoCuenta.getDescripcion()+"\t"+this.montoCuenta);
     }
     public void mostrarTodasLasTransacciones(){
         System.out.println("*****Listado de Operaciones*********");

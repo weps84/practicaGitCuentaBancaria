@@ -228,11 +228,29 @@ public class PracticaGIT {
     }
 
     public static void reporte_1() {
+        System.out.println("Busqueda Por Cedula:");
+        String cedulaBuscar = "";
+        reporte_3();
+        System.out.println("CEDULA A CONSULTAR: ");
+        cedulaBuscar = Utilidad.leer_String();
+        boolean sw = false;
+        
+        for(int i=0; i<contadorCliente && !sw; i++){
+            if (ClienteNuevo[i].getCedulaCliente().compareTo(cedulaBuscar)==0){
+                sw = false;
+                System.out.println("ID\tNUMERO DE CUENTA\tDESCRIPCION\tMONTO DISPONIBLE");
+                ClienteNuevo[i].mostrarCuentas();
+                     
+            }
+        }
+        if(!sw){
+            System.out.println("CLIENTE NO REGISTRADO!!!!!");
+        }
     }
 
     public static void reporte_2() {
         System.out.println("Busqueda de Cuenta por ID");
-        System.out.println("ID\tNumero\tDescripcion");
+        System.out.println("ID\tNumero\tDescripcion\tMonto Actual");
         for (int i=0; i<contadorCliente; i++){
             ClienteNuevo[i].mostrarCuentas();
         }
