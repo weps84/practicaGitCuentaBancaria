@@ -29,6 +29,8 @@ public class PracticaGIT {
     static long idClienteIncrementado;
     static long idCuentaIncrementado;
     static long idOperacionIncrementado;
+
+    int x;
     
     public static Cliente[] ampliarArregloCliente(Cliente arreglo[], int extra) {
         Cliente nuevo[] = new Cliente[arreglo.length + extra];
